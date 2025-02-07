@@ -279,8 +279,8 @@ pageextension 4703 "VAT Report Setup Extension" extends "VAT Report Setup"
                 var
                     VATGroupCommunication: Codeunit "VAT Group Communication";
                 begin
-                    GetClientSecrets();
-                    VATGroupCommunication.GetBearerToken(ClientIDText, ClientSecretText, Rec."Authority URL", Rec."Redirect URL", Rec."Resource URL");
+                    GetClientSecrets();                    
+                    VATGroupCommunication.GetBearerToken(ClientIDText, Rec.GetSecretAsSecretText(Rec."Client Secret Key").Unwrap(), Rec."Authority URL", Rec."Redirect URL", Rec."Resource URL");
                 end;
             }
         }
